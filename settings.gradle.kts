@@ -1,8 +1,5 @@
 import java.net.URI
 
-include(":smolvectordb")
-
-
 pluginManagement {
     repositories {
         google {
@@ -31,5 +28,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "JUNE"
 include(":app")
-include(":smollm")
+include(":redhat1406")
 include(":hf-model-hub-api")

@@ -1203,7 +1203,7 @@ class TextModel(ModelBase):
             # ref: https://huggingface.co/mistralai/Mistral-Nemo-Base-2407
             res = "tekken"
         if chkhsh == "855059429035d75a914d1eda9f10a876752e281a054a7a3d421ef0533e5b6249":
-            # ref: https://huggingface.co/HuggingFaceTB/SmolLM-135M
+            # ref: a Hugging Face small-language-model repo
             res = "smollm"
         if chkhsh == "3c30d3ad1d6b64202cd222813e7736c2db6e1bd6d67197090fc1211fbc612ae7":
             # ref: https://huggingface.co/bigscience/bloom
@@ -2571,7 +2571,6 @@ class LlamaModel(TextModel):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # fix for SmolVLM2, missing `num_attention_heads` in config.json
         if self.hf_arch == "VLlama3ForCausalLM":
             self.hparams["num_attention_heads"] = self.hparams.get("num_attention_heads", 32)
         hparams = ModelBase.load_hparams(self.dir_model, is_mistral_format=False)
@@ -2669,9 +2668,9 @@ class LlamaModel(TextModel):
         elif self.hf_arch == "LlamaModel":
             name = "model." + name
         elif name.startswith("model.text_model"):
-            name = name.replace("text_model.", "") # for SmolVLM
+            name = name.replace("text_model.", "") 
         elif name.startswith("language_model."):
-            name = name.replace("language_model.", "") # for the rest
+            name = name.replace("language_model.", "")
 
         if self.undo_permute:
             if name.endswith(("q_proj.weight", "q_proj.bias")):
@@ -2914,8 +2913,7 @@ class SmolVLMModel(MmprojModel):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         if self.hparams["model_type"] == "smolvlm_vision":
-            # fix for SmolVLM2, missing some keys in config.json
-            # default values are taken from transformers code
+           
             self.hparams["hidden_size"] = self.hparams.get("hidden_size", 1152)
             self.hparams["num_attention_heads"] = self.hparams.get("num_attention_heads", 16)
             self.hparams["intermediate_size"] = self.hparams.get("intermediate_size", 3072)
@@ -11944,7 +11942,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--remote", action="store_true",
-        help="(Experimental) Read safetensors file remotely without downloading to disk. Config and tokenizer files will still be downloaded. To use this feature, you need to specify Hugging Face model repo name instead of a local directory. For example: 'HuggingFaceTB/SmolLM2-1.7B-Instruct'. Note: To access gated repo, set HF_TOKEN environment variable to your Hugging Face token.",
+        help="(Experimental) Read safetensors file remotely without downloading to disk. Config and tokenizer files will still be downloaded. To use this feature, you need to specify a Hugging Face model repo name instead of a local directory. For example: 'Qwen/Qwen2.5-0.5B-Instruct'. Note: To access a gated repo, set HF_TOKEN environment variable to your Hugging Face token.",
     )
     parser.add_argument(
         "--mmproj", action="store_true",

@@ -381,7 +381,7 @@ class RecommendationEngine {
         return when {
             normalized.contains("qwen") -> "qwen"
             normalized.contains("tinyllama") -> "tinyllama"
-            normalized.contains("smollm") -> "smollm"
+            normalized.contains("redhat1406") -> "redhat1406"
             normalized.contains("llama") -> "llama"
             normalized.contains("mixtral") || normalized.contains("mistral") || normalized.contains("ministral") -> "mistral"
             normalized.contains("tinygemma") || normalized.contains("gemma") -> "gemma"

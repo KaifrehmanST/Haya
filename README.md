@@ -5,7 +5,7 @@ JUNE is an offline-first Android app for running GGUF language models on-device.
 This repository is a college-project adaptation of an open-source Android local-LLM app. The current codebase is focused on:
 
 - importing a `.gguf` model into app storage
-- loading the model through the bundled `smollm` JNI layer
+- loading the model through the bundled `redhat1406` JNI layer
 - chatting with the model through a simple Compose UI
 - keeping `llama.cpp` as a Git submodule
 
@@ -23,9 +23,8 @@ Qwen GGUF models are already working in this setup.
 ## Project Structure
 
 - `app/`: Android application module
-- `smollm/`: JNI/Kotlin wrapper around local LLM inference
+- `redhat1406/`: JNI/Kotlin wrapper around local LLM inference
 - `hf-model-hub-api/`: Hugging Face model helper module
-- `smolvectordb/`: vector database module
 - `llama.cpp/`: upstream Git submodule used by the native layer
 - `docs/`: integration and release notes
 

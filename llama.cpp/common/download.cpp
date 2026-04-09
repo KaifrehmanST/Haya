@@ -668,7 +668,7 @@ static std::string common_docker_get_token(const std::string & repo) {
 }
 
 std::string common_docker_resolve_model(const std::string & docker) {
-    // Parse ai/smollm2:135M-Q4_0
+    // Parse ai/redhat14062:135M-Q4_0
     size_t      colon_pos = docker.find(':');
     std::string repo, tag;
     if (colon_pos != std::string::npos) {

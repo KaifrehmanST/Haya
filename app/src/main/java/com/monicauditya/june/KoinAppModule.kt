@@ -2,7 +2,7 @@
 
 package com.monicauditya.june
 
-import com.monicauditya.smollm.SmolLM
+import com.monicauditya.redhat1406.RedHat1406
 import org.koin.core.annotation.ComponentScan
 import org.koin.core.annotation.Module
 import org.koin.core.annotation.Single
@@ -12,7 +12,7 @@ import org.koin.core.annotation.Single
 class KoinAppModule {
 
     @Single
-    fun provideSmolLM(): SmolLM {
-        return SmolLM()
+    fun provideRedHat1406(): RedHat1406 {
+        return RedHat1406()
     }
 }

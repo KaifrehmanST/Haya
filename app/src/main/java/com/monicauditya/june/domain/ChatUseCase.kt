@@ -3,7 +3,7 @@ package com.monicauditya.june.domain
 import android.app.ActivityManager
 import android.content.Context
 import android.util.Log
-import com.monicauditya.smollm.SmolLM
+import com.monicauditya.redhat1406.RedHat1406
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -40,7 +40,7 @@ sealed class GenerateResult {
 @Single
 class ChatUseCase(
     context: Context,
-    initialInferenceEngine: SmolLM
+    initialInferenceEngine: RedHat1406
 ) {
     private val appContext = context.applicationContext
     private val internalModelFile = File(context.filesDir, "model.gguf")
@@ -48,7 +48,7 @@ class ChatUseCase(
     private val isGenerating = AtomicBoolean(false)
     private val stopRequested = AtomicBoolean(false)
     private val modelMutex = Mutex()
-    private var inferenceEngine: SmolLM = initialInferenceEngine
+    private var inferenceEngine: RedHat1406 = initialInferenceEngine
 
     @Volatile
     private var loadedModelPath: String? = null
@@ -143,7 +143,7 @@ class ChatUseCase(
             } catch (e: Throwable) {
                 Log.e(LOG_TAG, "Model loading failed: ${e.message}", e)
                 inferenceEngine.close()
-                inferenceEngine = SmolLM()
+                inferenceEngine = RedHat1406()
                 isLoaded.set(false)
                 loadedModelPath = null
                 LoadModelResult.Failure(

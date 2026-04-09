@@ -90,7 +90,7 @@ dependencies {
     implementation(libs.androidx.material3.icons.extended)
     implementation(libs.androidx.compose.navigation)
 
-    implementation(project(":smollm"))
+    implementation(project(":redhat1406"))
     implementation(project(":hf-model-hub-api"))
 
     // Koin: dependency injection

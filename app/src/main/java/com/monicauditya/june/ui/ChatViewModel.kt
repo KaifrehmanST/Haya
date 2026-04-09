@@ -352,14 +352,14 @@ class ChatViewModel(
                 else -> "No response generated."
             }
             val chatId = currentState.activeChatId ?: activeChat?.id
+            val shouldPersistAssistantMessage =
+                chatId != null && finalText.isNotBlank() && (!wasCancelled || streamContent.isNotBlank())
 
-            if (chatId != null && finalText.isNotBlank() && (!wasCancelled || streamContent.isNotBlank())) {
+            if (shouldPersistAssistantMessage) {
                 appDB.addAssistantMessage(chatId, finalText)
             }
 
-            val newMessages = if (chatId != null) {
-                currentState.messages
-            } else if (wasCancelled && streamContent.isBlank()) {
+            val newMessages = if (wasCancelled && streamContent.isBlank()) {
                 currentState.messages
             } else {
                 currentState.messages + Message(

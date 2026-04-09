@@ -16,7 +16,7 @@ import kotlin.test.assertEquals
 class HFModelTests {
     private val huggingFaceModelId = "QuantFactory/BharatGPT-3B-Indic-GGUF"
     private val huggingFaceModelOrg = "QuantFactory"
-    private val invalidHuggingFaceModelId = "shubham0204/BharatGPT-3B-Indic-GGUF"
+    private val invalidHuggingFaceModelId = "Haya/BharatGPT-3B-Indic-GGUF"
     private val client: HttpClient =
         HttpClient(OkHttp) {
             install(ContentNegotiation) {
